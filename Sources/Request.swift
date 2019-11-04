@@ -17,3 +17,17 @@ public protocol Request {
 
     var httpMethod: HTTPMethod { get }
 }
+
+extension Request {
+    public var parameters: [String: String] {
+        [:]
+    }
+
+    public var parameterType: ParameterType {
+        .queryItem
+    }
+
+    public var httpMethod: HTTPMethod {
+        .get
+    }
+}
