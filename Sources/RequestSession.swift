@@ -41,6 +41,13 @@ extension RequestSession {
             break
         }
 
+        switch request.authType {
+        case .none:
+            break
+        case .oauth2(let token):
+            urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+
         return urlRequest
     }
 

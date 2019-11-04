@@ -6,6 +6,11 @@ public enum ParameterType {
     case form
 }
 
+public enum AuthType {
+    case none
+    case oauth2(String)
+}
+
 public protocol Request {
     associatedtype Response: Decodable
 
@@ -16,6 +21,8 @@ public protocol Request {
     var parameterType: ParameterType { get }
 
     var httpMethod: HTTPMethod { get }
+
+    var authType: AuthType { get }
 }
 
 extension Request {
@@ -29,5 +36,9 @@ extension Request {
 
     public var httpMethod: HTTPMethod {
         .get
+    }
+
+    public var authType: AuthType {
+        .none
     }
 }
